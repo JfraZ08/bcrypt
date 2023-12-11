@@ -1,0 +1,70 @@
+GET http://localhost:1337/api/movies
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjk4NDExOTQ3LCJleHAiOjE3MDEwMDM5NDd9.5uL2QbPaOmHinXThaDYPjdmFBL0HByOzIXiW4jpjikw
+
+###
+GET http://localhost:1337/api/actors
+###
+
+POST http://localhost:1337/api/actors
+Content-Type: application/json
+
+{
+    "data": {
+        "Name": "Jeremy",
+        "LastName": "FRAZIER"
+    }   
+}
+
+###
+
+POST http://localhost:1337/api/movies
+Content-Type: application/json
+
+{
+    "data":{
+        "title": "hostel",
+        "description": "tata",
+        "releaseDate": "2001-01-01",
+        "director": "Jeremy",
+        "actors": [2]
+
+    }
+}
+
+###
+
+GET http://localhost:1337/api/movies?filters[title][$startsWith]=h
+
+###
+
+PUT http://localhost:1337/api/actors/2
+Content-Type: application/json
+
+{
+    "data":{
+        "LastName": "BRAZIER"
+    }
+}
+
+###
+
+POST http://localhost:1337/api/auth/local
+Accept: application/json
+Content-Type: application/json
+
+{
+        "identifier": "tot@tot.fr",
+        "password": "123456"
+}
+
+###
+
+GET http://localhost:1337/api/users/me
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjk4NDExOTQ3LCJleHAiOjE3MDEwMDM5NDd9.5uL2QbPaOmHinXThaDYPjdmFBL0HByOzIXiW4jpjikw
+
+###
+
