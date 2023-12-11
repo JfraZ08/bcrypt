@@ -17,13 +17,19 @@ export const Movie = sequelize.define('movie', {
   timestamps: false
 })
 
+export const Actor = sequelize.define('actor', {
+  name: DataTypes.STRING
+}, {
+  timestamps: false
+})
+
 // sequelize.sync()
 sequelize.sync({ force: true }).then( async () => {
   const newFilm = await Movie.create({ name: "godzilla"})
-  const newFilmDeux = await Movie.create({ name: "titi"})
+  const newFilmDeux = await Movie.create({ name: "blabla"})
   const updatedFilm = await newFilm.update({name: 'tutu'})
-  const allFilms = await Movie.findAll({where: {name: "titi"}})
-  console.log('all titi', allFilms)
+  //const allFilms = await Movie.findAll({where: {name: "titi"}})
+  
 })
 
 
