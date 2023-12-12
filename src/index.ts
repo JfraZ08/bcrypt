@@ -29,8 +29,8 @@ export const Actor = sequelize.define('actor', {
   timestamps: false
 })
 
-sequelize.sync()
-// sequelize.sync({ force:true })
+sequelize.sync() // recharge la base actuelle
+// sequelize.sync({ force:true }) // remts la base à zéro et la recharge 
 
 const app = express();
 
