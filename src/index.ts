@@ -2,8 +2,6 @@ import express, { Router } from 'express';
 import { actorsRouter } from './router/actors';
 import { movieRouter } from './router/movies';
 import { Sequelize, DataTypes } from 'sequelize';
-import { LOADIPHLPAPI } from 'dns';
-import { log } from 'console';
 import { userRouter } from './router/user';
 //import { authRouteur } from './router/auth';
  
@@ -13,7 +11,6 @@ const sequelize = new Sequelize({
 });
 
 export const Movie = sequelize.define('movie', {
-  //name: DataTypes.STRING
   title : DataTypes.STRING,
   description : DataTypes.STRING,
   releaseDate : DataTypes.DATE,
@@ -51,7 +48,7 @@ export const apiRouter = Router();
 
 apiRouter.use('/movies', movieRouter)
 apiRouter.use('/actors', actorsRouter)
-apiRouter.use('/user', userRouter)
+apiRouter.use('/auth', userRouter)
 
 app.use('/api', apiRouter)
 
