@@ -3,6 +3,8 @@ import { actorsRouter } from './router/actors';
 import { movieRouter } from './router/movies';
 import { Sequelize, DataTypes } from 'sequelize';
 import { userRouter } from './router/user';
+import { middleware } from './middleware/checkToken';
+import jwt from 'jsonwebtoken'
 //import { authRouteur } from './router/auth';
  
 const sequelize = new Sequelize({
@@ -40,7 +42,7 @@ const app = express();
 
 app.use(express.json())
 
-app.get('/', (req, res) => {
+app.get('/', middleware, (req, res) => {
   res.send('Hello world!');
 });
 
@@ -50,7 +52,17 @@ apiRouter.use('/movies', movieRouter)
 apiRouter.use('/actors', actorsRouter)
 apiRouter.use('/auth', userRouter)
 
+apiRouter.get('/users/me', middleware, async (req, res) => { // création route sous middleweare 
+  const token = req.headers.authorization!.split(' ')[1] // recupération des headers(info) / "!" => pour spécifier qu'il existe  
+  const decoded = jwt.decode(token) as { userId: number } // décodage du token nombre avec id sous forme de nombre 
+  const user = await User.findByPk(decoded.userId) // récupération id du token 
+  res.send({
+    user: user // envoie 
+  })
+});
+
 app.use('/api', apiRouter)
+
 
 app.listen(1337, () => {
   console.log('Server is listening on port 1337');

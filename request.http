@@ -1,3 +1,7 @@
+GET http://localhost:1337/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0YXRhIjoyLCJpYXQiOjE3MDIzODY2ODh9.XkVxRvgAGAD4T0EXD6okK6UZfHOo-sVBtbagD5vIWG0
+
+###
 GET http://localhost:1337/api/movies
 Accept: application/json
 Content-Type: application/json
@@ -49,7 +53,6 @@ Content-Type: application/json
 ###
 
 POST http://localhost:1337/api/auth/local
-Accept: application/json
 Content-Type: application/json
 
 {
@@ -60,9 +63,7 @@ Content-Type: application/json
 ###
 
 GET http://localhost:1337/api/users/me
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjk4NDExOTQ3LCJleHAiOjE3MDEwMDM5NDd9.5uL2QbPaOmHinXThaDYPjdmFBL0HByOzIXiW4jpjikw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTcwMjM5MjE5NX0.PWZmB6DW9obEpE2IgbZybRkcRU5pLqB0KBLmYsZVMN4
 
 ###
 POST http://localhost:1337/api/auth/local/register

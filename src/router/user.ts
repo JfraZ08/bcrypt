@@ -7,15 +7,15 @@ const saltRounds = 10;
 
 export const userRouter = Router(); // Route user 
 
-userRouter.post('/local/', async (req, res) => {
-    const findUser = await User.findOne( { where : { email : req.body.identifier }})
-    if(!findUser){
+userRouter.post('/local/', async (req, res) => { // route pour post http://localhost:1317/api/auth/local 
+    const findUser = await User.findOne( { where : { email : req.body.identifier }}) // recherche d'un user avec l'email
+    if(!findUser){ // si pas trouver
         res.status(400).json({ error: "le login ne correspond à aucun utilisateur"})
     }
     else {
-        const isSamePassword = await compare(req.body.password, findUser.dataValues.password) 
-        if(isSamePassword){
-            const token = jwt.sign({tata: 2}, 'fidjskjfdslfjdslk')
+        const isSamePassword = await compare(req.body.password, findUser.dataValues.password) //même mdp compare avec un user  
+        if(isSamePassword){ // si c le même
+            const token = jwt.sign({userId: findUser.dataValues.id}, 'exact') // signe via l'id du user et le token en dessous 
             res.json({
                 findUser,
                 token
@@ -42,5 +42,7 @@ userRouter.post('/local/register', async (req, res) => {
         res.json(newUser); //alors affiche
     }
 })
+
+
 
 
