@@ -12,4 +12,4 @@
 
 création de routeur avec express donc import
 
-création de constance avec routes
+création de constance avec routes# bcrypt
