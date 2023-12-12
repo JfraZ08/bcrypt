@@ -4,6 +4,7 @@ import { movieRouter } from './router/movies';
 import { Sequelize, DataTypes } from 'sequelize';
 import { LOADIPHLPAPI } from 'dns';
 import { log } from 'console';
+import { userRouter } from './router/user';
 //import { authRouteur } from './router/auth';
  
 const sequelize = new Sequelize({
@@ -21,6 +22,12 @@ export const Movie = sequelize.define('movie', {
 }, {
   timestamps: false
 })
+export const User = sequelize.define('user', {
+  email : DataTypes.STRING,
+  password : DataTypes.STRING
+}, {
+  timestamps: false
+})
 
 export const Actor = sequelize.define('actor', {
   Name: DataTypes.STRING,
@@ -30,7 +37,7 @@ export const Actor = sequelize.define('actor', {
 })
 
 sequelize.sync() // recharge la base actuelle
-// sequelize.sync({ force:true }) // remts la base à zéro et la recharge 
+//sequelize.sync({ force:true }) // remts la base à zéro et la recharge 
 
 const app = express();
 
@@ -44,9 +51,11 @@ export const apiRouter = Router();
 
 apiRouter.use('/movies', movieRouter)
 apiRouter.use('/actors', actorsRouter)
+apiRouter.use('/user', userRouter)
 
 app.use('/api', apiRouter)
 
 app.listen(1337, () => {
   console.log('Server is listening on port 1337');
 });
+
