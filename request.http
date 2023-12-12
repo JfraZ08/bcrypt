@@ -27,8 +27,8 @@ Content-Type: application/json
         "title": "hostel",
         "description": "tata",
         "releaseDate": "2001-01-01",
-        "director": "Jeremy",
-        "actors": [2]
+        "director": "Jeremy"//,
+        //"actors": [2]
 
     }
 }

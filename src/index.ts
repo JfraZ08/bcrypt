@@ -12,26 +12,25 @@ const sequelize = new Sequelize({
 });
 
 export const Movie = sequelize.define('movie', {
-  name: DataTypes.STRING
+  //name: DataTypes.STRING
+  title : DataTypes.STRING,
+  description : DataTypes.STRING,
+  releaseDate : DataTypes.DATE,
+  director : DataTypes.STRING//,
+  //actors : DataTypes.CHAR
 }, {
   timestamps: false
 })
 
 export const Actor = sequelize.define('actor', {
-  name: DataTypes.STRING
+  Name: DataTypes.STRING,
+  LastName: DataTypes.STRING,
 }, {
   timestamps: false
 })
 
-// sequelize.sync()
-sequelize.sync({ force: true }).then( async () => {
-  const newFilm = await Movie.create({ name: "godzilla"})
-  const newFilmDeux = await Movie.create({ name: "blabla"})
-  const updatedFilm = await newFilm.update({name: 'tutu'})
-  //const allFilms = await Movie.findAll({where: {name: "titi"}})
-  
-})
-
+sequelize.sync()
+// sequelize.sync({ force:true })
 
 const app = express();
 
